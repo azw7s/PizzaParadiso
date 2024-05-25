@@ -1,0 +1,72 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %} {% static 'menu/css/menu_item_detail.css' %} {% endblock %}
+{% block csslink2 %}{% static 'menu/css/menu_category_detail.css' %}{% endblock %}
+{% block title %} {% for item in menu_item %} {{ item.title }} {% endfor %} {% endblock %}
+
+{% block content %}
+
+<nav class="categories__nav">
+  <ul class="categories__ul">
+    {% for category2 in categories %}
+    <li class="categories__item {% if category2.slug == url_slug %}active{% endif %}">
+      <a href="{% url 'menu' slug=category2.slug %}">
+        {{ category2.name }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<main>
+
+  <section class="item-detail__section">
+    {% for items in menu_item %}
+
+    <article class="item-img__article">
+      <div class="close-page">
+        <a onclick="history.back();">
+          <img src="/media/close.png">
+        </a>
+      </div>
+      <img class="item-detail__img" src="{{ items.image }}" alt="pizza_pic">
+    </article>
+
+    <article class="item-detail">
+      <div class="title-des">
+        <h3 class="item-detail__title">{{ items.title }}</h3>
+        <p class="item-detail__description"> {{ items.description }} </p>
+      </div>
+
+      {% if cart_id %}
+      <form method="post" action="{% url 'cart_item_create' %}">
+        {% csrf_token %}
+
+        <input type="hidden" name="category" value="{{items.category}}">
+        <input name="cart" type="hidden" value="{{cart_id}}">
+        <input name="dish" type="hidden" value="{{ items.pk }}">
+        <input name="dish_option" type="hidden" value="4">
+        <input name="quantity" type="hidden" value="1">
+        {{ form }}
+
+        <div class="add-to-cart__div">
+          <button type="submit"> Add to cart </button>
+        </div>
+      </form>
+
+      {% else %}
+
+      <div>
+        <a href="{% url 'login' %}?next_page={{request.path}}">
+          <button type="submit" class=""> Add to cart </button>
+        </a>
+      </div>
+
+      {% endif %}
+    </article>
+  </section>
+  {% endfor %}
+</main>
+
+{% endblock %}
+

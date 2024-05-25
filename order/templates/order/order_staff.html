@@ -1,0 +1,90 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'order/css/order_staff.css' %}{% endblock %}
+{% block title %} Orders {% endblock %}
+
+{% block content %}
+
+{% if request.user.is_staff %}
+{% if orders %}
+
+<main>
+    {% for order in orders %}
+    <section class="bill">
+
+        <article class="bill_article bill__header">
+            <h3>Pizza Paradiso</h3>
+            <p>"Where Every Bite Is a Taste of Paradise"</p>
+        </article>
+
+        <article>
+
+            <div class=" flex-between">
+                <p>order ID: {{ order.pk }}</p>
+                <p>{{ order.ordered_date }}</p>
+            </div>
+
+            <ul class="bill__ul">
+                {% for order_item in order.order_item %}
+
+
+                <li class="flex-between order-detail">
+                    <div class="flex-between order-items">
+                        <span style="margin-right: 5px;">{{ order_item.quantity }}</span>
+
+                        <p>
+                            {{ order_item.item }}
+
+                            {% for order_item_option in order_item.order_item_option %}
+                            {{ order_item_option.item_option }}
+                            {% endfor %}
+                        </p>
+                    </div>
+
+                    <p class="item-price"> {{ order_item.price }} KD</p>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="total">
+                <h4>Total {{ order.total_price }} KD</h4>
+            </div>
+            <div class="flex-between payment">
+                <h4> Payment </h4>
+                <h4> {{ order.payment_method }} </h4>
+            </div>
+
+        </article>
+
+        <article class="done-btn">
+
+            <form method="post" action="{% url 'order_delivered_update' %}">
+                {% csrf_token %}
+                <input type="hidden" name="order_pk" value="{{ order.pk }}">
+                <button type="submit">Done</button>
+            </form>
+
+        </article>
+
+    </section>
+    {% endfor %}
+</main>
+
+{% else %}
+
+<div class="no-order">
+    <h2> There is no order yet! </h2>
+</div>
+
+{% endif %}
+{% else %}
+
+<h2> This page is just for staff</h2>
+
+{% endif %}
+{% endblock %}
+
+
+{% block footer %}
+<div></div>
+{% endblock %}

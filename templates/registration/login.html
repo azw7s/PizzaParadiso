@@ -1,0 +1,37 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %} {% static 'customer/css/login.css' %} {% endblock %}
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1> you are Already loggedin </h1>
+
+{% else %}
+
+<main>
+    <section class="login__section">
+        <h2>Login</h2>
+        <form class="login__form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            {{ form.as_ul }}
+
+            <input type="hidden" name="next_page" value="{{ request.GET.next_page }}" >
+
+            <div class="flex-end">
+                <button class="primary__btn" type="submit">Login</button>
+            </div>
+        </form>
+
+        <p class="signup-link"> Don't have an account?<a href="{% url 'signup' %}">Singup</a></p>
+
+
+    </section>
+</main>
+
+{% endif %}
+{% endblock %}
+
+{% block footer %}{% endblock %}

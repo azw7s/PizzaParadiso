@@ -1,0 +1,42 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'menu/css/menu_category_detail.css' %}{% endblock %}
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<nav class="categories__nav">
+    <ul class="categories__ul">
+        {% for category2 in categories %}
+        <li class="categories__item {% if category2.slug == url_slug %}active{% endif %}">
+            <a href="{% url 'menu' slug=category2.slug %}">
+                {{ category2.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+
+<main>
+    <section class="menu">
+        <ul class="menu__ul">
+            {% for item in category.menu_item %}
+            <li class="menu__li">
+                <a class="menu-item" href="{% url 'menu_item' slug=item.slug %}">
+                    <article class="item__detail">
+                        <div>
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.description }}</p>
+                        </div>
+                        <h4>{{ item.price }} KD</h4>
+                    </article>
+                    <img src="{{ item.image }}">
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

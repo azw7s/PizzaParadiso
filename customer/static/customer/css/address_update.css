@@ -1,0 +1,50 @@
+:root{
+    --primary-color: #c31333;
+    --secondary-color: #70a401;
+    --tertiary-color: #f9fafc;
+    --quaternary-color: #313131;
+}
+html , body{
+    background-color: var(--tertiary-color);
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+.br-div{
+    background-color: #fff;
+    width: 100vw;
+    height: 30px;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+/* ===========================================================================================================*/
+/* TODO: CSS work to do here */
+
+main {
+    margin: 50px 30px;
+}
+.adrs-crte__section{
+
+}
+.adrs-crte__article{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+}
+.address__form input{
+    margin-bottom: 20px;
+}
+.input__div{
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.input__div textarea{
+    resize: none;
+}

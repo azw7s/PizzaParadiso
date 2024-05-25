@@ -1,0 +1,118 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'order/css/cart_detail.css' %}{% endblock %}
+{% block title %} Cart {% endblock %}
+
+
+{% block content %}
+    <main>
+
+        <header class="main__header">
+            <a onclick="history.back();">
+                <img src="/media/back.png">
+            </a>
+            <h1 class="main__header__h1">Cart</h1>
+        </header>
+
+        <section class="cart-item">
+            {% if cart_item_view %}
+            {% for cartitem in cart_item_view %}
+            <article class="cart-item__item">
+                <header class="item__header">
+                    <div class="header__text">
+                        <h4 class="item__title">{{ cartitem.dish.title }}</h4>
+                        <div class="item__description">
+                            {% for option in cartitem.dish_option %}
+                            <p > {{ option.value }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <img class="item__img" src="{{ cartitem.dish.image }}" alt="pizza_pic">
+                </header>
+
+                <footer class="item__footer">
+                    <p class="item__price">price: {{ cartitem.total_price }}</p>
+
+                    <form class="item__quantity" method="post" action="{% url 'update_cart_item_quantity' %}" >
+                        {% csrf_token %}
+                        <input type="hidden" name="cart_item_pk" value="{{ cartitem.pk }}">
+                        <button class="btn--decrease" type="submit" name="operation" value="-" >-</button>
+                        {{ cartitem.quantity }}
+                        <button class="btn--increase" type="submit" name="operation" value="+">+</button>
+                    </form>
+
+                </footer>
+
+            </article>
+            {% endfor %}
+        </section>
+        {% else %}
+        <h3>Cart is empty</h3>
+        {% endif %}
+
+    </main>
+
+{% endblock %}
+{% block footer %}
+
+    <footer>
+
+        <section class="checkout-price">
+            <ul>
+                <li class="checkout-price__item">
+                    <strong>total price</strong>
+                    <p id="total-price">KD {{ cart_view.total_price }}</p>
+                </li>
+            </ul>
+        </section>
+
+        <br><br><br><br><br><br><br>
+
+
+        <section class="footer-btn">
+
+            <a href="{% url 'menu' slug='pizza' %}">
+                <button type="button" class="footer-btn__btn add-item__btn"> Add item </button>
+            </a>
+
+            {% if cart_item_view %}
+
+            {% if address %}
+            <a href="{% url 'checkout' %}">
+                <button type="submit" class="footer-btn__btn checkout__btn"> Checkout </button>
+            </a>
+            {% else %}
+            <a href="{% url 'address_list' customer_id=cart.customer.id %}">
+                <button type="submit" class="footer-btn__btn checkout__btn"> Checkout </button>
+            </a>
+            {% endif %}
+
+            {% else %}
+            <button disabled type="submit" class="footer-btn__btn checkout__btn disabled-item"> Checkout </button>
+            {% endif %}
+
+
+        </section>
+
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the scroll position from the sessionStorage
+            var scrollPosition = sessionStorage.getItem("scrollPosition");
+            if (scrollPosition !== null) {
+                // Set the scroll position
+                window.scrollTo(0, scrollPosition);
+                // Clear the sessionStorage
+                sessionStorage.removeItem("scrollPosition");
+            }
+        });
+
+        window.addEventListener("beforeunload", function() {
+            // Store the scroll position in the sessionStorage before page reloads
+            sessionStorage.setItem("scrollPosition", window.scrollY);
+        });
+    </script>
+
+{% endblock %}
+

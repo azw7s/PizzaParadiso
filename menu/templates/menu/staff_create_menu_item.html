@@ -1,0 +1,32 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'menu/css/staff_create_menu_item.css' %}{% endblock %}
+{% block title %} Create MenuItem {% endblock %}
+
+{% block content %}
+
+{% if request.user.is_staff %}
+
+<main>
+    <section class="menu-item__section">
+        <form class="menu-item__form" method="post" action="{% url 'staff_create_menu_item' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_ul }}
+            <div class="btn__div">
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+{% else %}
+
+<h2> This page is just for staff</h2>
+
+{% endif %}
+{% endblock %}
+
+
+{% block footer %}
+<div></div>
+{% endblock %}

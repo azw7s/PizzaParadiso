@@ -1,0 +1,80 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'customer/css/address_update.css' %}{% endblock %}
+{% block title %} Update address {% endblock %}
+
+
+{% block content %}
+
+<main>
+
+    <section class="adrs-crte__section">
+        <form method="post" action="{% url 'address_update' pk=address.pk %}">
+            {% csrf_token %}
+
+            <article class="adrs-crte__article">
+
+                <div class="input__div">
+                    {{ form.phone_number.label }}
+                    {{ form.phone_number }}
+                </div>
+                <div>
+                </div>
+                <div class="input__div">
+                    {{ form.state.label }}
+                    {{ form.state }}
+                </div>
+                <div class="input__div">
+                    {{ form.city.label }}
+                    {{ form.city }}
+                </div>
+                <div class="input__div">
+                    {{ form.block.label }}
+                    {{ form.block }}
+                </div>
+                <div class="input__div">
+                    {{ form.street.label }}
+                    {{ form.street }}
+                </div>
+                <div class="input__div">
+                    {{ form.road.label }}
+                    {{ form.road }}
+                </div>
+                <div class="input__div">
+                    {{ form.building.label }}
+                    {{ form.building }}
+                </div>
+                <div class="input__div">
+                    {{ form.floor.label }}
+                    {{ form.floor }}
+                </div>
+                <div class="input__div">
+                    {{ form.apartment.label }}
+                    {{ form.apartment }}
+                </div>
+                <div class="input__div">
+                    {{ form.address_description.label }}
+                    {{ form.address_description }}
+                </div>
+                <div class="input__div">
+                    {{ form.active.label }}
+                    {{ form.active }}
+                </div>
+
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+                <div style="display: flex; justify-content: flex-end;">
+                    <button type="submit">Submit</button>
+                </div>
+            </article>
+
+        </form>
+            <form action="{% url 'address_delete' pk=address.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+
+    </section>
+
+</main>
+{% endblock %}

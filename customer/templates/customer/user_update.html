@@ -1,0 +1,79 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %} {% static 'customer/css/user_update.css' %} {% endblock %}
+{% block title %} Account {% endblock %}
+
+{% block content %}
+<main>
+    <section class="acc-info">
+        <form action="{% url 'user_update' customer=customer.id %}" method="post">
+            {% csrf_token %}
+            <div class="info_title">
+                <h2> {{ customer.user.username }} account info</h2>
+                <button class="submit-btn" type="submit"> Submit </button>
+            </div>
+
+            <ul class="info-ul">
+                <li class="info-item">
+                    <h4>ID</h4>
+                    <p>{{ customer.id }}</p>
+                </li>
+                <li class="info-item">
+                    <h4> Name </h4>
+                    <div>
+                        <input type="text" name="first_name" value="{{ customer.user.first_name }}" >
+                        <input type="text" name="last_name" value="{{ customer.user.last_name }}" >
+                    </div>
+                </li>
+                <li class="info-item">
+                    <h4> Phone number </h4>
+                    <p> {{ customer.phone_number }} </p>
+                </li>
+                <li class="info-item">
+                    <h4> Email </h4>
+                    <input type="email" name="email" value="{{ customer.user.email }}" >
+                </li>
+
+                {% if customer.user.is_superuser %}
+                <li class="info-item">
+                    <h4> Superuser </h4>
+                    <p> {{ customer.user.is_superuser }} </p>
+                </li>
+                {% endif %}
+                {% if customer.user.is_staff %}
+                <li class="info-item">
+                    <h4> Staff </h4>
+                    <p> {{ customer.user.is_staff }} </p>
+                </li>
+                {% endif %}
+            </ul>
+        </form>
+
+    </section>
+
+    <section class="acc-option__section">
+
+        <div class="acc-option">
+            <a>
+                <h3> Saved addresses </h3>
+                <img src="/media/next.png">
+            </a>
+        </div>
+
+        <div class="acc-option">
+            <a>
+                <h3> Orders history </h3>
+                <img src="/media/next.png">
+            </a>
+        </div>
+
+        <form class="logout__form" method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button disabled type="submit">Logout</button>
+        </form>
+
+    </section>
+
+</main>
+
+{% endblock %}

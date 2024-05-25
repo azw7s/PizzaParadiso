@@ -1,0 +1,47 @@
+:root{
+    --primary-color: #c31333;
+    --secondary-color: #70a401;
+    --tertiary-color: #f9fafc;
+    --quaternary-color: #313131;
+}
+
+html , body{
+    background-color: var(--tertiary-color);
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+a{
+    padding: 0;
+    text-decoration: none;
+    color: #000;
+}
+
+/* ===========================================================================================================*/
+
+main{
+    margin: 30px;
+}
+.staff_section{
+}
+.staff__ul{
+    margin: auto;
+    padding: 0;
+    max-width: 530px;
+    list-style: none;
+}
+.staff__li{
+    margin: 30px 0;
+}
+.staff-option{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    border: 1px solid var(--quaternary-color);
+}
+.staff-option img{
+    margin-right: 10px;
+    width: 35px;
+}

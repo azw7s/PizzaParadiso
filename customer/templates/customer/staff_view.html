@@ -1,0 +1,37 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'customer/css/staff_view.css' %}{% endblock %}
+{% block title %} Staff {% endblock %}
+
+{% if request.user.is_staff %}
+{% block content %}
+
+<main>
+    <section class="staff_section">
+        <ul class="staff__ul">
+            <h2> Staff section</h2>
+            <li class="staff__li">
+                <a class="staff-option" href="{% url 'order_staff' staff_id=request.user.customer.id %}">
+                    <img src="/media/order_s.png"> Orders
+                </a>
+            </li>
+            <li class="staff__li">
+                <a class="staff-option" href="{% url 'staff_list_menu_item' %}">
+                    <img src="/media/serving-dish.png"> Menu Items
+                </a>
+            </li>
+        </ul>
+    </section>
+</main>
+
+{% endblock %}
+{% block footer %}
+
+<div></div>
+
+{% endblock %}
+{% else %}
+
+<h2> This page is just for staff</h2>
+
+{% endif %}
