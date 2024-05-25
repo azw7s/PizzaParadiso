@@ -34,7 +34,7 @@ def get_cart_item_count(request):
             cart_item_count = cart_item.count()
 
         except user.DoesNotExist:
-            return {'error_message': 'User does not exist'}
+            return {'error_message': 'user does not exist'}
         except customer.DoesNotExist:
             return {'error_message': 'Customer does not exist'}
         except cart.DoesNotExist:
@@ -43,7 +43,6 @@ def get_cart_item_count(request):
             return {'error_message': 'CartItem does not exist'}
 
     return {'cart_item_count': cart_item_count}
-
 
 
 
