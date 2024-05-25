@@ -12,7 +12,7 @@ def get_cart_id(request):
         try:
             customer = Customer.objects.get(user=user)
         except Customer.DoesNotExist:
-            customer = Customer.objects.create(user=user, phone_number=+96550669593)
+            customer = Customer.objects.create(user=user, phone_number='+96550669593')
 
         try:
             cart = Cart.objects.get(customer=customer)
@@ -31,7 +31,7 @@ def get_cart_item_count(request):
         if Customer.objects.get(user=user):
             customer = Customer.objects.get(user=user)
         else:
-            customer = Customer.objects.create(user=user, phone_number=+96550669593)
+            customer = Customer.objects.create(user=user, phone_number='+96550669593')
             if Cart.objects.get(customer):
                 cart = Cart.objects.get(customer)
             else:
