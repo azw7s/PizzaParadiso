@@ -11,13 +11,15 @@ def get_cart_id(request):
         user = request.user
         try:
             customer = Customer.objects.get(user=user)
-            cart = Cart.objects.get(customer=customer)
-            cart_id = cart.id
-
         except Customer.DoesNotExist:
-            return {'error_message': 'Customer does not exist'}
+            customer = Customer.objects.create(user=user, phone_number=+96550669593)
+
+        try:
+            cart = Cart.objects.get(customer=customer)
         except Cart.DoesNotExist:
-            return {'error_message': 'Cart does not exist'}
+            cart = Cart.objects.create(customer=customer)
+
+        cart_id = cart.id
 
     return {'cart_id': cart_id}
 
@@ -40,12 +42,6 @@ def get_cart_item_count(request):
                 try:
                     cart_item_count = cart_item.count()
 
-                except user.DoesNotExist:
-                    return {'error_message': 'user does not exist'}
-                except customer.DoesNotExist:
-                    return {'error_message': 'Customer does not exist'}
-                except cart.DoesNotExist:
-                    return {'error_message': 'Cart does not exist'}
                 except cart_item.DoesNotExist:
                     return {'error_message': 'CartItem does not exist'}
 
