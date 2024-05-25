@@ -1,0 +1,124 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'order/css/checkout.css' %}{% endblock %}
+{% block head %}
+<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+{% block title %} Checkout {% endblock %}
+
+
+{% block content %}
+
+<main>
+    <section class="delivery-address">
+      <div style="text-align: center;">
+        {{ address.state }}
+        {{ address.city }}
+        <p>
+          block {{ address.block }}
+          street {{ address.street }}
+          building {{ address.building }}
+        </p>
+        {{ address.phone_number }}
+
+      </div>
+      <div>
+        <a href="{% url 'address_checkout_list' customer_id=cart.customer.id %}">
+          <button type="button">Change address</button>
+        </a>
+      </div>
+
+    </section>
+
+    <section class="delivery-time">
+
+        <img src="/media/clock.png" alt="clock">
+        <p>Within 35 mins </p>
+
+    </section>
+
+    <section>
+      <h3>Pay with</h3>
+
+      <input type="radio" id="card-pay" name="payment_method" value="card">
+      <label for="card-pay">Card (Credit Cards, ...)</label><br>
+
+      <input type="radio" id="cash" name="payment_method" value="cash">
+      <label for="cash">Cash</label><br>
+
+    </section>
+
+    <section class="product">
+
+      <article>
+
+        <h3> {{ cart }}</h3>
+
+        <div class="pricing-row">
+          <h4>Subtotal</h4>
+          <h4>KWD {{ SMC.total_price }}</h4>
+        </div>
+
+        <div class="pricing-row">
+          <p>Delivery fee</p>
+          <p>KWD 0.000 </p>
+        </div>
+
+        <div class="pricing-row">
+          <h4>Total amount </h4>
+          <h4>KWD {{ SMC.total_price }}</h4>
+        </div>
+
+      </article>
+      <div class="place-order__div">
+        <button class="secondary__btn" type="button" id="place-order-btn" > Confirm </button>
+      </div>
+    </section>
+
+  <br><br><br>
+
+</main>
+  {% csrf_token %}
+{% endblock %}
+
+{% block footer %}
+<footer></footer>
+{% endblock %}
+
+  {% block js %}
+  <script type="text/javascript">
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+    var placeOrderBtn = document.getElementById("place-order-btn");
+
+    placeOrderBtn.addEventListener("click", function () {
+      var selectedPayment = document.querySelector('input[name="payment_method"]:checked').value;
+      if (selectedPayment === "card") {
+        fetch("{% url 'create_checkout_session' cart_id %}", {
+          method: "POST",
+          headers: {
+            'X-CSRFToken': csrftoken
+          }
+        })
+          .then(function (response) {
+          return response.json();
+        })
+          .then(function (session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+          .then(function (result) {
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+          .catch(function (error) {
+          console.error("Error:", error);
+        });
+      } else if (selectedPayment === "cash") {
+        window.location.href = "{% url 'order_placed' %}";
+      }
+    });
+
+  </script>
+  {% endblock %}

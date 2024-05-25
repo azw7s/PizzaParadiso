@@ -1,0 +1,49 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'order/css/order_list.css' %}{% endblock %}
+{% block title %} Order history {% endblock %}
+
+{% block content %}
+
+{% if orders %}
+
+<main>
+    <section class="order__section">
+        {% for order in orders %}
+
+        <article class="order">
+
+            <div class="left__div">
+                <p id="date__p"> {{ order.ordered_date }} </p>
+
+                {% for order_item in order.order_item %}
+                <p>{{ order_item.item }} | {{ order_item.quantity }} pcs</p>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="right__div">
+                {% if order.delivered %}
+                    <p class="delivered-true"> Delivered </p>
+                {% else %}
+                    <p class="delivered-false"> Cancelled </p>
+                {% endif %}
+
+                {{ order.total_price }}
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+{% else %}
+<h2 class="no-order"> You have no orders.</h2>
+{% endif %}
+{% endblock %}
+{% block footer %}
+<div></div>
+{% endblock %}

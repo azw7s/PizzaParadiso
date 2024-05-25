@@ -1,0 +1,141 @@
+:root{
+    --primary-color: #c31333;
+    --secondary-color: #70a401;
+    --tertiary-color: #f9fafc;
+    --quaternary-color: #313131;
+}
+
+html , body{
+    background-color: var(--tertiary-color);
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+a{
+    padding: 0;
+    text-decoration: none;
+    color: #000;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.primary__btn{
+    padding: 3px 7px;
+    color: var(--primary-color);
+    background-color: #fff;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+}
+.primary__btn:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* ===========================================================================================================*/
+
+main{
+    margin: 30px;
+}
+.order-placed__h2{
+    color: var(--secondary-color);
+}
+.bill{
+    margin: auto;
+    padding: 30px 20px;
+    min-height: 400px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.bill__header{
+    margin: 20px 0 10px 0;
+    text-align: center;
+}
+.bill__header h3{
+    margin: 0;
+}
+.bill__ul{
+    margin: 10px 0 5px 0;
+    padding: 10px 0 5px 0;
+    border-top: 1px dashed gray;
+    border-bottom: 1px dashed gray;
+}
+.order-detail{
+    padding: 5px 20px;
+    border: none;
+}
+.order-items p{
+    margin-right: 5px;
+    word-wrap: wrap;
+}
+.item-price{
+    white-space: nowrap;
+}
+.customer-name{
+
+}
+.customer-address{
+    margin: 0;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    border-bottom: 1px solid #c31333;
+
+}
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.total{
+    margin: 5px 0 0 0;
+    padding: 0 20px;
+    text-align: right;
+}
+.total h4{
+    margin: 0;
+}
+.payment{
+    margin: 10px 0;
+    padding: 0 20px;
+
+}
+.payment h4{
+    margin: 0;
+}
+.secondary__btn{
+    padding: 3px 7px;
+    color: var(--secondary-color);
+    background-color: #fff;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+}
+.secondary__btn:hover{
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+.successful{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.press-img{
+    padding: 0;
+    width: 30px;
+    position: relative;
+    right: 25px;
+    top: 25px;
+}
+.press-img img{
+    width: 30px;
+    height: 35px;
+}
+.order-create__btn{
+    font-size: 16px;
+    padding: 15px 60px;
+    border-radius: 20px;
+}

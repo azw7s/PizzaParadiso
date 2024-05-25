@@ -1,0 +1,76 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'customer/css/address_update.css' %}{% endblock %}
+{% block title %} Create address {% endblock %}
+
+{% block content %}
+
+<main>
+
+    <section class="adrs-crte__section">
+        <form method="post" action="{% url 'address_create' %}">
+            {% csrf_token %}
+
+            <article class="adrs-crte__article">
+                <input type="hidden" name="customer" value="{{ customer.id }}">
+                <input type="hidden" name="active" id="id_active" value="on" checked>
+
+                <div class="input__div">
+                    <label for="phone_number">Phone number</label>
+                    <input type="tel" name="phone_number" id="phone_number" value="" >
+                </div>
+                <div>
+                </div>
+                <div class="input__div">
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" >
+                </div>
+                <div class="input__div">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city">
+                </div>
+                <div class="input__div">
+                    <label for="block">Block</label>
+                    <input type="number" id="block" name="block" >
+                </div>
+                <div class="input__div">
+                    <label for="street">Street</label>
+                    <input type="text" id="street" name="street">
+                </div>
+                <div class="input__div">
+                    <label for="road">Road</label>
+                    <input type="number" id="road" name="road">
+                </div>
+                <div class="input__div">
+                    <label for="building">Building</label>
+                    <input type="number" id="building" name="building">
+                </div>
+                <div class="input__div">
+                    <label for="floor">Floor</label>
+                    <input type="number" id="floor" name="floor">
+
+                </div>
+                <div class="input__div">
+                    <label for="apartment">Apartment</label>
+                    <input type="number" id="apartment" name="apartment">
+                </div>
+                <div class="input__div">
+                    <label for="address_description"> Address description</label>
+                    <textarea id="address_description" name="address_description"  rows="5"></textarea>
+                </div>
+
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+            </article>
+
+
+            <button type="submit">Create</button>
+        </form>
+
+    </section>
+
+</main>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

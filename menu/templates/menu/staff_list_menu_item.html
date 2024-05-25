@@ -1,0 +1,57 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'menu/css/staff_list_menu_item.css' %}{% endblock %}
+{% block title %} MenuItem {% endblock %}
+
+{% if request.user.is_staff %}
+{% block content %}
+
+<main>
+
+  <section class="create-item__section">
+    <a class="create-item" href="{% url 'staff_create_menu_item' %}">
+      <img src="/media/add_2.png"> Create menu item
+    </a>
+  </section>
+
+  <section class="menu-item__section">
+    {% for menu_item in menu_items %}
+    <article class="menu-item">
+
+      <div class="menu-item_detail">
+        <img src="{{ menu_item.image.url }}">
+
+        <div>
+          <h4>{{ menu_item.category }} {{ menu_item.title }}</h4>
+          <p>{{ menu_item.description }}</p>
+          <p>Price {{ menu_item.price }}</p>
+        </div>
+
+      </div>
+
+      <div class="menu-item__btns">
+        <a href="{% url 'staff_update_menu_item' pk=menu_item.pk %}">
+          <button>Update</button>
+        </a>
+
+        <form action="{% url 'staff_delete_menu_item' pk=menu_item.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Delete</button>
+        </form>
+      </div>
+
+    </article>
+    {% endfor %}
+
+  </section>
+
+</main>
+
+{% endblock %}
+
+{% block footer %}
+
+<div></div>
+
+{% endblock %}
+{% endif %}

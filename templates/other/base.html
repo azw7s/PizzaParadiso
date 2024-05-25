@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+{% load static %}
+
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% block csslink %}{% endblock %}">
+    <link rel="stylesheet" href="{% block csslink2 %}{% endblock %}">
+    <link rel="stylesheet" href="{% block csslink3 %}{% endblock %}">
+    <link rel="stylesheet" href="{% static 'menu/css/base.css' %}">
+    <link rel="icon" href="/media/pizza_logo2.png" type="image/x-icon">
+    {% block head %}{% endblock %}
+    <title>{% block title %} PizzParadiso {% endblock %}</title>
+  </head>
+  <body>
+
+    <header class="paradiso__header">
+      <nav class="header__nav collapsible">
+        <article class="banner" >
+          <a class="banner__title" href="{% url 'home' %}"> PizzaParadiso </a>
+          <div class="banner-icons">
+            {% if user.is_authenticated %}
+            {% if cart_item_count %}
+            <a href="{% url 'cart_detail' cart_id=cart_id %}" class="cart-item-count"> {{ cart_item_count }} </a>
+            {% endif %}
+            <a href="{% url 'cart_detail' cart_id=cart_id %}">
+              <img class="cart-icon" src="/media/shopping_bag.png" alt="cart">
+            </a>
+            {% endif %}
+            <img class="icon--menu-bar nav__toggler" src="/media/menu_icon.jpg" alt="menu-bar">
+          </div>
+        </article>
+        <ul class="nav__list collapsible__content">
+          <li class="nav__item">
+            <a href="{% url 'menu' slug='pizza' %}">Menu</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav__item">
+            <a href="{% url 'customer_detail' customer_id=request.user.customer.id %}">Account</a>
+          </li>
+          {% else %}
+          <li class="nav__item">
+            <a href="{% url 'login' %}" >Login</a>
+          </li>
+          {% endif %}
+          <li class="nav__item">
+            <a href="#">Contact Us</a>
+          </li>
+          {% if user.is_staff %}
+          <li class="nav__item">
+            <a href="{% url 'staff_view' staff_id=request.user.customer.id %}">Staff</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+  {% block footer %}
+    <footer class="page__footer">
+      <section class="footer--grid">
+
+        <article>
+          <div class="footer-item">
+            <h4>MENU</h4>
+            <span>Deals</span>
+            <span>Pizzas</span>
+            <span>Sides & Dips</span>
+            <span>Pasta</span>
+            <span>Salads</span>
+            <span>Drinks</span>
+          </div>
+        </article>
+        <article>
+          <div class="footer-item">
+            <h4>CUSTOMER SERVICE</h4>
+            <span>Contact Us</span>
+            <span>Feedback</span>
+            <span>FAQs</span>
+          </div>
+          <div class="footer-item">
+            <h4>ABOUT US</h4>
+            <span>About us</span>
+          </div>
+        </article>
+        <article>
+          <div class="footer-item">
+            <h4>MY ACCOUNT</h4>
+            <span>Sign in</span>
+            <span>Register</span>
+            <span>My Account</span>
+          </div>
+        </article>
+        <article>
+          <div class="footer-item">
+            <h4>PRIVACY POLICY</h4>
+            <span>Privacy Policy</span>
+          </div>
+          <div class="footer-item">
+            <h4>POLICIES</h4>
+            <span>Terms & Conditions</span>
+          </div>
+        </article>
+        <article class="footer-item">
+          <div>
+            <h4> FOLLOW US</h4>
+            <img class="social-logo" src="/media/insta_logo.png">
+            <img class="social-logo" src="/media/facebook_logo1.png">
+          </div>
+
+          <div>
+            <h4> DOWNLOAD OUR APP </h4>
+            <img class="app-logo" src="/media/aaaaa.png">
+            <img class="app-logo" src="/media/bbbbb.png">
+          </div>
+
+        </article>
+      </section>
+
+      <section class="footer-copyright">
+        <div> © 2024, Pizza Paradiso Kuwait, All Rights Reserved </div>
+        <div>Order a delicious pizza on the go, anywhere, anytime. Every time you order, you get a hot and fresh pizza delivered at your doorstep in less than thirty minutes.</div>
+        <div>Hurry up and place your order now!</div>
+      </section>
+    </footer>
+    {% endblock %}
+
+    {% block js %}{% endblock %}
+
+    <script>
+      const collapsibles = document.querySelectorAll(".collapsible");
+      collapsibles.forEach((item) =>
+      item.addEventListener("click", function () {
+        this.classList.toggle("collapsible--expanded");
+      })
+      );
+      let slideIndex = 0;
+      showSlides();
+    </script>
+  </body>
+</html>

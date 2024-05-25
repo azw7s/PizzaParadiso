@@ -1,0 +1,50 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'menu/css/staff_update_menu_item.css' %}{% endblock %}
+
+{% block title %} Update MenuItem {% endblock %}
+
+{% if request.user.is_staff %}
+{% block content %}
+
+<main>
+    <section class="update__section">
+        <form class="update__form" method="post">
+            {% csrf_token %}
+            <ul class="form__ul">
+                <li>
+                    {{ form.category.label }}
+                    {{ form.category }}
+                </li>
+                <li>
+                    {{ form.title.label }}
+                    {{ form.title }}
+                </li>
+                <li>
+                    {{ form.image.label }}
+                    <input id="img__input" type="file" name="image" accept="image/*">
+                </li>
+                <li>
+                    {{ form.description.label }}
+                    {{ form.description }}
+                </li>
+                <li>
+                    {{ form.price.label }}
+                    {{ form.price }}
+                </li>
+            </ul>
+
+            <div class="submit__btn-div">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+{% endblock %}
+{% block footer %}
+
+<div></div>
+
+{% endblock %}
+{% endif %}

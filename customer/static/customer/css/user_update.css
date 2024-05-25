@@ -1,0 +1,89 @@
+:root{
+    --primary-color: #c31333;
+    --secondary-color: #70a401;
+    --tertiary-color: #f9fafc;
+    --quaternary-color: #313131;
+}
+html , body{
+    background-color: var(--tertiary-color);
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+.br-div{
+    background-color: #fff;
+    width: 100vw;
+    height: 30px;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+/* ===========================================================================================================*/
+main{
+    margin: 30px;
+}
+.acc-info{
+    margin: 50px 0 ;
+}
+.info_title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.info_title h2 {
+    margin: 0;
+}
+.info_title a {
+    color: var(--secondary-color);
+}
+.submit-btn{
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 3px;
+    cursor: pointer;
+}
+.info-ul {
+    margin: 1rem;
+    padding: 0;
+}
+.info-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--quaternary-color);
+}
+.acc-option__section{
+    margin: 70px 0;
+
+}
+.acc-option{
+    margin: 15px 0;
+    border: 1px solid var(--quaternary-color);
+    border-radius: 5px;
+    opacity: .5;
+}
+.acc-option a {
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.acc-option h3{
+
+}
+.acc-option img {
+    width: 30px;
+}
+
+.logout__form{
+    display: flex;
+    justify-content: flex-end;
+}
+.logout__form button {
+    padding: 5px 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}

@@ -1,0 +1,52 @@
+:root{
+    --primary-color: #c31333;
+    --secondary-color: #70a401;
+    --tertiary-color: #f9fafc;
+    --quaternary-color: #313131;
+}
+
+html , body{
+    background-color: var(--tertiary-color);
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+a{
+    padding: 0;
+    text-decoration: none;
+    color: #000;
+}
+
+/* ===========================================================================================================*/
+
+main{
+    padding: 30px;
+}
+.update__form{
+}
+.form__ul{
+    list-style: none;
+}
+.update__form li{
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+#img__input{
+    width: 180px;
+}
+.submit__btn-div{
+    margin: 30px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.submit__btn-div button{
+    padding: 7px ;
+    background: #fff;
+    border: 1px solid gray;
+    border-radius: 7px;
+
+}

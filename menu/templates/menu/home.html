@@ -1,0 +1,98 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'menu/css/home.css' %}{% endblock %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+{% if deals %}
+<section class="slideshow-container">
+
+    {% for item in deals %}
+    <a class="mySlides fade" href="{% url 'menu_item' slug=item.slug %}">
+        <img src="{{ item.image.url }}" >
+    </a>
+    {% endfor %}
+
+    <div style="text-align:center">
+    {% for item in deals %}
+        <span class="dot"></span>
+    {% endfor %}
+    </div>
+
+</section>
+{% endif %}
+
+<main class="deals-menu">
+
+    <section class="flex-center">
+        <div class="welcome flex-center">
+            <h2>Welcome to PizzaParadiso</h2>
+            <p>"Where <span style="color: var(--primary-color);">Every</span> Bite Is a Taste of
+                <span style="color: var(--primary-color);">Paradise</span>"</p>
+            <a href="{% url 'menu' slug='pizza' %}">
+                <button class="welcome__btn">Order now</button>
+            </a>
+        </div>
+    </section>
+
+
+    <section class="deals-menu__article">
+        <div class="deals-menu__header">
+            <h2>Menu</h2>
+            <a href="{% url 'menu' slug='pizza' %}" class="a_modify"><p>View</p></a>
+        </div>
+
+        <article class="deals-menu__items">
+            {% for item in category %}
+            <a href="{% url 'menu' slug=item.slug %}" class="category__card item--margin a_modify">
+                <img src="{{ item.image.url }}" >
+                <span>
+                    {{item.name}}
+                </span>
+            </a>
+            {% endfor %}
+        </article>
+    </section>
+
+    <section class="deals-menu__article">
+        <div class="deals-menu__header">
+            <h2>Pizza</h2>
+            <a href="{% url 'menu' slug='pizza' %}" class="a_modify"><p>View</p></a>
+        </div>
+
+        <article class="deals-menu__items">
+            {% for item in pizza %}
+            <a href="{% url 'menu_item' slug=item.slug %}" class="category__card item--margin a_modify">
+                <img src="{{ item.image.url }}" >
+                <span>
+                    {{item.title}}
+                </span>
+            </a>
+            {% endfor %}
+        </article>
+    </section>
+
+</main>
+
+
+<script>
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 2000);
+    }
+
+</script>
+{% endblock %}

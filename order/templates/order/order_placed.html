@@ -1,0 +1,77 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static 'order/css/order_placed.css' %}{% endblock %}
+{% block title %} Order placed {% endblock %}
+
+{% block content %}
+
+<main>
+    <section class="bill">
+        <article class="bill_article bill__header">
+            <h3>Pizza Paradiso</h3>
+            <p>"Where Every Bite Is a Taste of Paradise"</p>
+        </article>
+
+        <article>
+
+
+            <ul class="bill__ul">
+                {% for item in cart.cart_item %}
+
+                <li class="flex-between order-detail">
+                    <div class="flex-between order-items">
+                        <span style="margin-right: 5px;">{{ item.quantity }}</span>
+
+                        <p>
+                            {{ item.dish.title }}
+
+                            {% for dish_option in item.dish_option %}
+                            {{ dish_option.value }}
+                            {% endfor %}
+                        </p>
+                    </div>
+
+                    <p class="item-price"> {{ item.total_price }} KD</p>
+                </li>
+                {% endfor %}
+            </ul>
+            <br><br><br><br>
+
+            <div class="flex-between total">
+                <h4>Total</h4>
+                <h4> {{ cart.total_price }} KD</h4>
+            </div>
+            <div class="flex-between payment">
+                <h4> Payment </h4>
+                <h4> {{ payment_method }} </h4>
+            </div>
+
+        </article>
+    </section>
+
+    <section class="successful">
+        <form action="{% url 'order_create' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="customer" value="{{ customer.id }}">
+            <input type="hidden" name="address" value="{{ address.pk }}">
+            <input type="hidden" name="total_price" value="{{ cart.total_price }}">
+            <input type="hidden" name="item" value="{{ cart_item }}">
+            <input type="hidden" name="payment_method" value="{{ payment_method }}">
+
+            <button class="secondary__btn order-create__btn" type="submit">Place order</button>
+        </form>
+
+        <div class="press-img">
+            <img src="/media/tap.png" alt="press the button">
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
+
+{% block footer %}
+<div></div>
+{% endblock %}

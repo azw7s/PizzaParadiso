@@ -1,0 +1,21 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% endblock %}
+{% block title %} Account {% endblock %}
+
+{% block content %}
+
+<main>
+    <section>
+        <form action="{% url 'address_delete' pk=address.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+    </section>
+</main>
+
+{% endblock %}
+
+{% block footer %}
+<div></div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %}{% static '/css/.css' %}{% endblock %}
+{% block title %} Delete MenuItem {% endblock %}
+
+{% if request.user.is_staff %}
+{% block content %}
+
+<main>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Delete</button>
+    </form>
+</main>
+
+{% endblock %}
+{% block footer %}
+
+<div></div>
+
+{% endblock %}
+{% endif %}

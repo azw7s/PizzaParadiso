@@ -1,0 +1,57 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %} {% static 'customer/css/address_checkout_list.css' %} {% endblock %}
+{% block title %} Account {% endblock %}
+
+
+{% block content %}
+
+{% if addresses %}
+<main>
+  <section class="address_section">
+    {% for address in addresses %}
+    <a class="address" href="{% url 'address_update' pk=address.pk %}?next={{ request.path }}">
+      <article>
+
+        <h3> {{ address.state }} </h3>
+        <h4> {{ address.city }} </h4>
+        <p>Block {{ address.block }}, Street {{ address.street }}, Road {{ address.road }}</p>
+        <p> Building {{ address.building }}, Floor {{ address.floor }}, Apartment {{ address.apartment }}</p>
+      </article>
+      <div class="check-icon__div">
+        {% if address.active %}
+        <img src="/media/check.png" alt="checked">
+        {% endif %}
+      </div>
+    </a>
+    {% endfor %}
+
+  </section>
+
+  <div class="page-btns">
+    <a href="{% url 'address_create' %}?next={{ request.path }}">
+      <button type="button"> Add new address </button>
+    </a>
+    <a href="{% url 'checkout' %}">
+      <button type="button"> Done </button>
+    </a>
+  </div>
+
+</main>
+
+{% else %}
+
+<section>
+  <h2> No address saved!</h2>
+  <button type="button">
+    <a href="{% url 'address_create' %}">Add new address</a>
+  </button>
+</section>
+
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+<div></div>
+{% endblock %}
+

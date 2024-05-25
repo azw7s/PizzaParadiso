@@ -1,0 +1,58 @@
+{% extends "other/base.html" %}
+{% load static %}
+{% block csslink %} {% static 'customer/css/signup.css' %} {% endblock %}
+{% block title %} Signup {% endblock %}
+
+{% block content %}
+
+<main>
+    <section class="signup__section">
+        <h2>Sign Up</h2>
+        {% if form.errors %}
+        <div style="color: red;">
+            <strong>Error:</strong> Please correct the following issues.
+        </div>
+        {% endif %}
+
+        <form class="signup__form" method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <ul class="signup__ul">
+                <li>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Enter your username" required>
+                </li>
+                <li>
+                    <label for="first_name">Your name</label>
+                    <div class="flex-end double-input">
+                        <input type="text" name="first_name" id="first_name" placeholder="Enter your first name" required>
+                        <input type="text" name="last_name" id="last_name" placeholder="Enter your last name" required>
+                    </div>
+                </li>
+                <li>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </li>
+                <li>
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" name="phone_number" id="phone_number" value="+965 " required>
+                </li>
+                <li>
+                    <label for="password1">Password</label>
+                    <input type="password" name="password1" id="password1" placeholder="Enter your password" required>
+                </li>
+                <li>
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="password2" id="password2" placeholder="Enter your password" required>
+                </li>
+            </ul>
+
+            <div class="flex-end submit-btn__div">
+                <button class="primary__btn" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+{% endblock %}
+
+{% block footer %}{% endblock %}
