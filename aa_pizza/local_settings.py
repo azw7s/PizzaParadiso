@@ -5,10 +5,10 @@ ALLOWED_HOSTS = ['pizzaparadiso-87c4c4557382.herokuapp.com', '127.0.0.1']
 
 # Database
 
-# DB_NAME = "pizza_paradiso"
-# DB_HOST = "127.0.0.1"
-# DB_USER = "root"
-# DB_PASS = "kwamirzw7samadi"
+DB_NAME = "pizza_paradiso"
+DB_HOST = "127.0.0.1"
+DB_USER = "root"
+DB_PASS = "kwamirzw7samadi"
 
 # SECURITY WARNING: keep the secret key used in production secret!
 

@@ -31,6 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'customer',
+    'menu',
+    'order',
     'rest_framework',
     'djstripe',
     'autoslug',
@@ -38,14 +42,6 @@ INSTALLED_APPS = [
     'livereload',
     'django_extensions',
     'ipware',
-
-    # static
-    'django.contrib.staticfiles',
-
-    # Local
-    'customer.apps.CustomerConfig',
-    'menu.apps.MenuConfig',
-    'order.apps.OrderConfig',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -54,9 +50,7 @@ AUTHENTICATION_BACKENDS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -93,8 +87,11 @@ WSGI_APPLICATION = 'aa_pizza.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASS,
+        'HOST': DB_HOST,
     }
 }
 
