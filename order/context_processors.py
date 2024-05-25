@@ -26,15 +26,21 @@ def get_cart_item_count(request):
     cart_item_count = None
     if request.user.is_authenticated:
         user = request.user
+        customer = Customer.objects.get(user=user)
+        cart = Cart.objects.get(customer)
+        cart_item = CartItem.objects.filter(cart=cart)
+
         try:
-            cart = Cart.objects.get(customer=Customer.objects.get(user=user))
-            cart_item = CartItem.objects.filter(cart=cart)
             cart_item_count = cart_item.count()
 
-        except Customer.DoesNotExist:
+        except user.DoesNotExist:
+            return {'error_message': 'User does not exist'}
+        except customer.DoesNotExist:
             return {'error_message': 'Customer does not exist'}
-        except Cart.DoesNotExist:
+        except cart.DoesNotExist:
             return {'error_message': 'Cart does not exist'}
+        except cart_item.DoesNotExist:
+            return {'error_message': 'CartItem does not exist'}
 
     return {'cart_item_count': cart_item_count}
 
