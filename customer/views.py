@@ -157,7 +157,7 @@ class AddressDelete(generic.DeleteView):
 class StaffView(generic.TemplateView):
     template_name = 'customer/staff_view.html'
     slug_field = 'staff'
-    slug_url_kwarg = 'staff_id'
+    slug_url_kwarg = 'staff_uuid'
 
     def get_context_data(self, **kwargs):
         context = super(StaffView, self).get_context_data(**kwargs)
