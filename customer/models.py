@@ -9,7 +9,7 @@ from autoslug import AutoSlugField
 class Customer(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='customer')
     slug = AutoSlugField(populate_from="user", unique=True, blank=False, null=False)
-    uuid4 = models.UUIDField(default=uuid4)
+    uuid = models.UUIDField(default=uuid4)
     phone_number = PhoneNumberField(_('phone number'), unique=True, blank=False)
     created_date = models.DateTimeField(_('created date'), auto_now_add=True)
 
