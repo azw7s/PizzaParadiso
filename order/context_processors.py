@@ -19,7 +19,7 @@ def get_cart_id(request):
         except Cart.DoesNotExist:
             cart = Cart.objects.create(customer=customer)
 
-        cart_id = cart.id
+        cart_id = cart.uuid
 
     return {'cart_id': cart_id}
 
@@ -39,10 +39,6 @@ def get_cart_item_count(request):
 
                 cart_item = CartItem.objects.filter(cart=cart)
 
-                try:
-                    cart_item_count = cart_item.count()
-
-                except cart_item.DoesNotExist:
-                    return {'error_message': 'CartItem does not exist'}
+                cart_item_count = cart_item.count()
 
     return {'cart_item_count': cart_item_count}
