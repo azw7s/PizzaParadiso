@@ -72,8 +72,8 @@ class CustomerDetail(LoginRequiredMixin, generic.DetailView):
     model = Customer
     template_name = 'customer/customer_detail.html'
     context_object_name = 'customer'
-    slug_field = 'id'
-    slug_url_kwarg = 'customer_id'
+    slug_field = 'uuid'
+    slug_url_kwarg = 'customer_uuid'
 
 
 # Address --------------------------------------------------------------------------------------------------------------

@@ -191,8 +191,8 @@ class CartDetail(LoginRequiredMixin, generic.DetailView):
     template_name = 'order/cart_detail.html'
 
     # use id field in url path
-    slug_field = 'id'
-    slug_url_kwarg = 'cart_id'
+    slug_field = 'uuid'
+    slug_url_kwarg = 'cart_uuid'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
