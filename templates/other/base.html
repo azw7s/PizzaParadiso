@@ -21,9 +21,9 @@
           <div class="banner-icons">
             {% if user.is_authenticated %}
             {% if cart_item_count %}
-            <a href="{% url 'cart_detail' cart_id=cart_id %}" class="cart-item-count"> {{ cart_item_count }} </a>
+            <a href="{% url 'cart_detail' cart_uuid=cart_id %}" class="cart-item-count"> {{ cart_item_count }} </a>
             {% endif %}
-            <a href="{% url 'cart_detail' cart_id=cart_id %}">
+            <a href="{% url 'cart_detail' cart_uuid=cart_id %}">
               <img class="cart-icon" src="/media/shopping_bag.png" alt="cart">
             </a>
             {% endif %}

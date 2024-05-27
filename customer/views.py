@@ -53,8 +53,8 @@ class UserUpdate(generic.UpdateView):
     model = User
     fields = ['first_name', 'last_name', 'email']
     template_name = 'customer/user_update.html'
-    slug_field = 'customer'
-    slug_url_kwarg = 'customer'
+    slug_field = 'id'
+    slug_url_kwarg = 'customer_id'
 
     def get_success_url(self):
         customer = Customer.objects.get(user=self.request.user)
@@ -72,8 +72,8 @@ class CustomerDetail(LoginRequiredMixin, generic.DetailView):
     model = Customer
     template_name = 'customer/customer_detail.html'
     context_object_name = 'customer'
-    slug_field = 'uuid'
-    slug_url_kwarg = 'customer_uuid'
+    slug_field = 'id'
+    slug_url_kwarg = 'customer_id'
 
 
 # Address --------------------------------------------------------------------------------------------------------------
@@ -156,8 +156,8 @@ class AddressDelete(generic.DeleteView):
 
 class StaffView(generic.TemplateView):
     template_name = 'customer/staff_view.html'
-    slug_field = 'staff'
-    slug_url_kwarg = 'staff_uuid'
+    slug_field = 'id'
+    slug_url_kwarg = 'staff_id'
 
     def get_context_data(self, **kwargs):
         context = super(StaffView, self).get_context_data(**kwargs)

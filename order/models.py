@@ -10,8 +10,8 @@ from menu.models import MenuItem, OptionValue
 
 # Auto-generate
 class Cart(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False, unique=True)
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
-    uuid = models.UUIDField(primary_key=True, default=uuid4, editable=False, unique=True)
 
     def __str__(self):
         return self.customer.user.username
