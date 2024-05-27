@@ -19,7 +19,7 @@ def get_cart_id(request):
         except Cart.DoesNotExist:
             cart = Cart.objects.create(customer=customer)
 
-        cart_id = cart.uuid
+        cart_id = cart.id
 
     return {'cart_id': cart_id}
 
