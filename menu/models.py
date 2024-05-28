@@ -62,6 +62,6 @@ class OptionValue(models.Model):
 
     def __str__(self):
         if self.value and self.price:
-            return f"{self.pk} -{self.value} : {self.price}"
+            return f"{self.value} : {self.price}"
         elif self.price is None:
-            return f"{self.pk} -{self.value}"
+            return f"{self.value}"

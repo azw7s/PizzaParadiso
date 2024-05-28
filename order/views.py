@@ -205,7 +205,7 @@ class CartDetail(LoginRequiredMixin, generic.DetailView):
         context['cart_view'] = cart_serializer.data
 
         # Serialize related cart items
-        cart_items = CartItem.objects.filter(cart=cart)
+        cart_items = CartItem.objects.filter(cart=cart).order_by('dish__title')
         cart_item_serializer = CartItemSerializer(cart_items, many=True)
         context['cart_item_view'] = cart_item_serializer.data
 
