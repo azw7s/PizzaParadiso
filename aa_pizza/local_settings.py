@@ -27,4 +27,4 @@ STRIPE_SECRET_KEY = \
 
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
-YOUR_DOMAIN = 'https://pizzaparadiso-58e8f2528358.herokuapp.com'
+YOUR_DOMAIN = 'pizzaparadiso-87c4c4557382.herokuapp.com'
