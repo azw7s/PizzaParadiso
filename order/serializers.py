@@ -33,16 +33,16 @@ class CartSerializer(serializers.ModelSerializer):
 
     def get_total_price(self, cart):
         main_price = 0
-        option_prices = 0
 
         for item in cart.cart_item.all():
             if item.dish_option.exists():
-                try:
-                    option_prices = [option.price for option in item.dish_option.all() if option.price is not None]
-                    if option_prices:
-                        main_price += max(option_prices) * item.quantity
-                except option_prices is None or 0:
+                option_prices = [option.price for option in item.dish_option.all() if option.price is not None or 0]
+                if option_prices:
+                    main_price += max(option_prices) * item.quantity
+                else:
                     main_price += item.quantity * item.dish.price
+            else:
+                main_price += item.quantity * item.dish.price
 
         return main_price
 
