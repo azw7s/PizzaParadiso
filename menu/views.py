@@ -9,6 +9,11 @@ from .serializers import MenuItemSerializer, MenuCategorySerializer, MenuItemOpt
 from order.serializers import CartItemSerializer
 from order.models import CartItem
 from customer.models import Customer
+from django.shortcuts import redirect
+
+
+def redirect_to_home(request):
+    return redirect('/home/')
 
 
 class Home(generic.TemplateView):

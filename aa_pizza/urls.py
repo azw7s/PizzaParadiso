@@ -21,8 +21,11 @@ from django.conf.urls.static import static
 from customer.views import SignUpView
 from django.contrib.auth.views import LogoutView
 from customer.views import CustomLogin
+from menu.views import redirect_to_home
+
 
 urlpatterns = [
+    path('', redirect_to_home),
     path('admin/', admin.site.urls),
     path('', include('customer.urls')),
     path('', include('menu.urls')),
