@@ -1,6 +1,7 @@
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
+
 ALLOWED_HOSTS = ['pizzaparadiso-87c4c4557382.herokuapp.com', '127.0.0.1', 'www.pizzaparadiso-kw.com']
 
 # Database
