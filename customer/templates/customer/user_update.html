@@ -6,7 +6,7 @@
 {% block content %}
 <main>
     <section class="acc-info">
-        <form action="{% url 'user_update' customer=customer.id %}" method="post">
+        <form action="{% url 'user_update' pk=user.pk customer_id=customer.id %}" method="post">
             {% csrf_token %}
             <div class="info_title">
                 <h2> {{ customer.user.username }} account info</h2>

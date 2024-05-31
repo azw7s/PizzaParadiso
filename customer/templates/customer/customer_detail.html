@@ -8,7 +8,7 @@
     <section class="acc-info">
         <div class="info_title">
             <h2> {{ customer.user.username }} account info</h2>
-            <a href="{% url 'user_update' customer_id=customer.id %}">Edit</a>
+            <a href="{% url 'user_update' pk=user.pk customer_id=user.customer.id %}">Edit</a>
         </div>
         <ul class="info-ul">
             <li class="info-item">

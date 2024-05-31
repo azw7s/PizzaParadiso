@@ -56,6 +56,10 @@ class UserUpdate(generic.UpdateView):
     slug_field = 'id'
     slug_url_kwarg = 'customer_id'
 
+    def get_queryset(self):
+        user = self.request.user
+        return User.objects.filter(id=user.id)
+
     def get_success_url(self):
         customer = Customer.objects.get(user=self.request.user)
         return reverse_lazy('customer_detail', kwargs={'customer_id': customer.id})
