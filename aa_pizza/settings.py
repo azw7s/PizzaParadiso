@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'order',
     'rest_framework',
     'djstripe',
+    'storages',
     'autoslug',
     'phonenumber_field',
     'livereload',
