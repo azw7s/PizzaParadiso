@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-from .local_settings import *
+
 from django.contrib.messages import constants as messages
 
 
@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'aa_pizza.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASS,
-        'HOST': DB_HOST,
+        'NAME': 'pizza_paradiso',
+        'USER': 'root',
+        'PASSWORD': 'kwamirzw7samadi',
+        'HOST': '127.0.0.1',
     }
 }
 
