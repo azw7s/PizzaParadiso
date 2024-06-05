@@ -16,7 +16,7 @@ from django.contrib.messages import constants as messages
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = ['pizzaparadiso-87c4c4557382.herokuapp.com', '127.0.0.1', 'www.pizzaparadiso-kw.com']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
