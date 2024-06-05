@@ -14,6 +14,9 @@ from pathlib import Path
 
 from django.contrib.messages import constants as messages
 
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,6 +85,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aa_pizza.wsgi.application'
 
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -89,10 +93,10 @@ WSGI_APPLICATION = 'aa_pizza.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pizza_paradiso',
-        'USER': 'root',
-        'PASSWORD': 'kwamirzw7samadi',
-        'HOST': '127.0.0.1',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASS'),
+        'HOST': os.getenv('DB_HOST'),
     }
 }
 
@@ -156,3 +160,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/home/'
+
+
+# AWS
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_FILE_OVERWRITE = os.getenv('AWS_S3_FILE_OVERWRITE', 'False') == 'True'
+AWS_DEFAULT_ACL = os.getenv('AWS_DEFAULT_ACL', None)
+DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE', 'storages.backends.s3boto3.S3Boto3Storage')
+
+# Stripe
+
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.getenv('DJSTRIPE_FOREIGN_KEY_TO_FIELD', 'id')
+
+YOUR_DOMAIN = os.getenv('YOUR_DOMAIN')
