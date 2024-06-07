@@ -29,8 +29,6 @@ class Home(generic.TemplateView):
         context['deals'] = MenuItem.objects.filter(category=deals)
         pizza = MenuCategory.objects.get(name='pizza')
         context['pizza'] = MenuItem.objects.filter(category=pizza)
-        import os
-        context['AWS_ACCESS_KEY_ID'] = os.environ.get('AWS_ACCESS_KEY_ID')
 
         return context
 
