@@ -12,11 +12,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
-from django.contrib.messages import constants as messages
 
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = True
+# DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 
 ALLOWED_HOSTS = ['pizzaparadiso-87c4c4557382.herokuapp.com', '127.0.0.1', 'www.pizzaparadiso-kw.com']
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,7 +87,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aa_pizza.wsgi.application'
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-$f=hyksp4m0%u%_2ldo2a&$3)rffg@hj6blt+g0&sbnrn---q('
+# SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -93,12 +97,22 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASS'),
-        'HOST': os.getenv('DB_HOST'),
+        'NAME': "pizza_paradiso",
+        'USER': "root",
+        'PASSWORD': "kwamirzw7samadi",
+        'HOST': "127.0.0.1",
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.getenv('DB_NAME'),
+#         'USER': os.getenv('DB_USER'),
+#         'PASSWORD': os.getenv('DB_PASS'),
+#         'HOST': os.getenv('DB_HOST'),
+#     }
+# }
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
@@ -170,14 +184,27 @@ AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE = os.getenv('AWS_S3_FILE_OVERWRITE')
 AWS_DEFAULT_ACL = os.getenv('AWS_DEFAULT_ACL', None)
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
 
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
 
+
 # Stripe
 
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
-DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.getenv('DJSTRIPE_FOREIGN_KEY_TO_FIELD', 'id')
+STRIPE_WEBHOOK_SECRET = "whsec_Ra6exjACrpu6gOksXwfoldqqMs2UJxFm"
+STRIPE_PUBLIC_KEY = \
+    "pk_test_51OMqPMCdFC8wFAX1m6WBevbH8zAjHiVySXQ0qs3dT9CQbexTba9Z9AhbFD0xrwtbKSTQvlQID9O351ITpNthfYYk00Dggoadwk"
+STRIPE_SECRET_KEY = \
+    "sk_test_51OMqPMCdFC8wFAX1urg7tnrZBg1mktkl412sRohgfl6LDUUeR1Or7eIDV9T3QER6tAnWyQlxXSpazx12H1WuBiwh000PAVi4Xk"
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
-YOUR_DOMAIN = os.getenv('YOUR_DOMAIN')
+# STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+# STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+# STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
+# DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.getenv('DJSTRIPE_FOREIGN_KEY_TO_FIELD', 'id')
+
+
+# YOUR_DOMAIN = os.getenv('YOUR_DOMAIN')
+YOUR_DOMAIN = 'pizzaparadiso-kw.com'
