@@ -12,23 +12,6 @@ from order.serializers import CartItemSerializer
 from order.models import CartItem
 from customer.models import Customer
 from django.shortcuts import redirect
-from storages.backends.s3boto3 import S3Boto3Storage
-import uuid
-
-
-# class CustomS3Boto3Storage(S3Boto3Storage, ABC):
-#     def get_available_name(self, name, max_length=None):
-#         ext = name.split('.')[-1]
-#         name = f"{uuid.uuid4()}.{ext}"
-#         return super().get_available_name(name, max_length=max_length)
-#
-#
-# class MediaStorage(S3Boto3Storage):
-#     location = 'media'
-#     file_overwrite = False
-#
-#
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 def redirect_to_home(request):
@@ -46,6 +29,8 @@ class Home(generic.TemplateView):
         context['deals'] = MenuItem.objects.filter(category=deals)
         pizza = MenuCategory.objects.get(name='pizza')
         context['pizza'] = MenuItem.objects.filter(category=pizza)
+        import os
+        context['AWS_ACCESS_KEY_ID'] = os.environ.get('AWS_ACCESS_KEY_ID')
 
         return context
 
