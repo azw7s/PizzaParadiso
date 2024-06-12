@@ -214,4 +214,4 @@ DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 
 # YOUR_DOMAIN = os.getenv('YOUR_DOMAIN')
-YOUR_DOMAIN = 'pizzaparadiso-kw.com'
+YOUR_DOMAIN = 'https://pizzaparadiso-kw.com'
