@@ -54,7 +54,7 @@ main{
 .menu-item{
     margin: 20px;
     padding: 20px;
-    height: 250px;
+    width: 350px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;

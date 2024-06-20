@@ -29,7 +29,9 @@
           <img src="https://pizzaparadiso.s3.eu-north-1.amazonaws.com/media/close.png">
         </a>
       </div>
-      <img class="item-detail__img" src="{{ items.image }}" alt="pizza_pic">
+      <div class="item-img__div">
+        <img class="item-detail__img" src="{{ items.image }}" alt="pizza_pic">
+      </div>
     </article>
 
     <article class="item-detail">
@@ -50,7 +52,7 @@
         {{ form }}
 
         <div class="add-to-cart__div">
-          <button type="submit"> Add to cart </button>
+          <button type="submit" class="secondary__btn"> Add to cart </button>
         </div>
       </form>
 

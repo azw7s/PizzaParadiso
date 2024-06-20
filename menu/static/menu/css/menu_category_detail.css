@@ -115,6 +115,14 @@ main{
 .item__detail h4 {
     margin: 10px 0;
 }
+.item__description{
+    margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+}
 
 @media only screen and (min-width: 600px) and (max-width: 997px) {
     .menu-item{

@@ -55,9 +55,12 @@ main {
 .close-page img{
     width: 30px;
 }
+.item-img__div{
+    display: flex;
+    justify-content: center;
+}
 .item-detail__img{
-    margin: 0 0 0 20px;
-    width: 400px;
+    width: 90%;
 }
 .item-detail{
     margin: 20px 10px;
@@ -92,7 +95,11 @@ main {
     color: #fff;
 }
 
-
+@media only screen and (min-width:768px) {
+    .item-detail__img{
+        width: 50%;
+    }
+}
 
 
 

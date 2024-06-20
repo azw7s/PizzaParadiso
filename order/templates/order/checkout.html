@@ -25,7 +25,7 @@
       </div>
       <div>
         <a href="{% url 'address_checkout_list' customer_id=cart.customer.id %}">
-          <button type="button">Change address</button>
+          <button type="button" class="primary__btn">Change address</button>
         </a>
       </div>
 
@@ -52,8 +52,6 @@
     <section class="product">
 
       <article>
-
-        <h3> {{ cart }}</h3>
 
         <div class="pricing-row">
           <h4>Subtotal</h4>

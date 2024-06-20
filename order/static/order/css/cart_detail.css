@@ -165,8 +165,9 @@ a{
 }
 .footer-btn__btn{
     margin: 1rem;
-    padding: 20px 60px;
+    padding: 20px 0px;
     width: 40vw;
+    max-width: 400px;
     font-size: 20px;
     background-color: #fff;
     border: 1px solid var(--primary-color);
