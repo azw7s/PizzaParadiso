@@ -25,6 +25,8 @@
         </a>
         {% endfor %}
 
+    </section>
+    <section>
 
         <div class="page-btns">
             <a href="{% url 'address_create' %}?next={{ request.path }}">
@@ -34,6 +36,7 @@
                 <button type="button"> Done </button>
             </a>
         </div>
+
     </section>
 
 </main>

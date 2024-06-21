@@ -17,7 +17,7 @@
                 <p id="date__p"> {{ order.ordered_date }} </p>
 
                 {% for order_item in order.order_item %}
-                <p>{{ order_item.item }} | {{ order_item.quantity }} pcs</p>
+                <p>{{ order_item.item }} - {{ order_item.quantity }} pcs</p>
                 {% endfor %}
 
             </div>
@@ -30,7 +30,7 @@
                     <p class="delivered-false"> Cancelled </p>
                 {% endif %}
 
-                {{ order.total_price }}
+                KD {{ order.total_price }}
             </div>
 
         </article>
@@ -41,7 +41,7 @@
 
 </main>
 {% else %}
-<h2 class="no-order"> You have no orders.</h2>
+<h2 class="no-order"> You have not ordered yet.</h2>
 {% endif %}
 {% endblock %}
 {% block footer %}

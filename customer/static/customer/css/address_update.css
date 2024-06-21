@@ -48,3 +48,7 @@ main {
 .input__div textarea{
     resize: none;
 }
+#id_active {
+    width: 20px;
+    height: 20px;
+}

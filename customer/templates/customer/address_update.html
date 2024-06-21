@@ -64,14 +64,14 @@
                 <input type="hidden" name="next" value="{{ request.GET.next }}">
 
                 <div style="display: flex; justify-content: flex-end;">
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="secondary__btn">Submit</button>
                 </div>
             </article>
 
         </form>
             <form action="{% url 'address_delete' pk=address.pk %}" method="post">
                 {% csrf_token %}
-                <button type="submit">Delete</button>
+                <button type="submit" class="primary__btn">Delete</button>
             </form>
 
     </section>
