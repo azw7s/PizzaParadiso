@@ -33,7 +33,7 @@ class SignUpView(UserPassesTestMixin, generic.edit.CreateView):
         return not self.request.user.is_authenticated
 
     def handle_no_permission(self):
-        return redirect('menu_list')
+        return redirect('/home/')
 
 
 class CustomLogin(LoginView):

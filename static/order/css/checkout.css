@@ -79,9 +79,11 @@ main section {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 .place-order__div button{
-    font-size: 20px;
     padding: 17px 50px;
-    min-width: 450px;
+    width: 50%;
+    min-width: 350px;
+    max-width: 500px;
+    font-size: 20px;
     border-radius: 20px;
 }
 @media only screen and (min-width: 1200px){
