@@ -13,8 +13,7 @@ import os
 from pathlib import Path
 
 
-DEBUG = True
-# DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['pizzaparadiso-87c4c4557382.herokuapp.com', '127.0.0.1', 'www.pizzaparadiso-kw.com']
@@ -88,7 +87,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'aa_pizza.wsgi.application'
 
 SECRET_KEY = 'django-insecure-$f=hyksp4m0%u%_2ldo2a&$3)rffg@hj6blt+g0&sbnrn---q('
-# SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # Database
@@ -103,16 +101,6 @@ DATABASES = {
         'HOST': "127.0.0.1",
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.getenv('DB_NAME'),
-#         'USER': os.getenv('DB_USER'),
-#         'PASSWORD': os.getenv('DB_PASS'),
-#         'HOST': os.getenv('DB_HOST'),
-#     }
-# }
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)

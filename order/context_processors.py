@@ -1,6 +1,3 @@
-from django.contrib.auth import get_user_model
-from django.shortcuts import redirect
-from django.contrib import messages
 from order.models import Cart, CartItem
 from customer.models import Customer
 
