@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['pizzaparadiso-53081858ce68.herokuapp.com', '127.0.0.1', 'www.pizzaparadiso-kw.com']
