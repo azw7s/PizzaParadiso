@@ -18,7 +18,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['pizzaparadiso-53081858ce68.herokuapp.com',
                  'www.pizzaparadiso-kw.com',
-                 'pizzaparadiso-kw.com',
                  '127.0.0.1',
                  ]
 
