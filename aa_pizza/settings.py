@@ -16,7 +16,11 @@ from pathlib import Path
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['pizzaparadiso-53081858ce68.herokuapp.com', '127.0.0.1', 'www.pizzaparadiso-kw.com']
+ALLOWED_HOSTS = ['pizzaparadiso-53081858ce68.herokuapp.com',
+                 'www.pizzaparadiso-kw.com',
+                 'pizzaparadiso-kw.com',
+                 '127.0.0.1',
+                 ]
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
