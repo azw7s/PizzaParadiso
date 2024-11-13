@@ -25,10 +25,17 @@ class Home(generic.TemplateView):
         context = super(Home, self).get_context_data(**kwargs)
         context['user'] = self.request.user
         context['category'] = MenuCategory.objects.all()
-        deals = MenuCategory.objects.get(name='deals')
-        context['deals'] = MenuItem.objects.filter(category=deals)
-        pizza = MenuCategory.objects.get(name='pizza')
-        context['pizza'] = MenuItem.objects.filter(category=pizza)
+        try:
+            deals = MenuCategory.objects.get(name='deals')
+            context['deals'] = MenuItem.objects.filter(category=deals)
+        except MenuCategory.DoesNotExist:
+            context['deals'] = None
+
+        try:
+            pizza = MenuCategory.objects.get(name='pizza')
+            context['pizza'] = MenuItem.objects.filter(category=pizza)
+        except MenuCategory.DoesNotExist:
+            context['deals'] = None
 
         return context
 
