@@ -35,7 +35,7 @@ class Home(generic.TemplateView):
             pizza = MenuCategory.objects.get(name='pizza')
             context['pizza'] = MenuItem.objects.filter(category=pizza)
         except MenuCategory.DoesNotExist:
-            context['deals'] = None
+            context['pizza'] = None
 
         return context
 

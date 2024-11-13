@@ -25,6 +25,7 @@
 
 <main class="deals-menu">
 
+    {% if category %}
     <section class="flex-center">
         <div class="welcome flex-center">
             <h2>Welcome to PizzaParadiso</h2>
@@ -35,7 +36,6 @@
             </a>
         </div>
     </section>
-
 
     <section class="deals-menu__article">
         <div class="deals-menu__header">
@@ -54,7 +54,9 @@
             {% endfor %}
         </article>
     </section>
+    {% endif %}
 
+    {% if pizza %}
     <section class="deals-menu__article">
         <div class="deals-menu__header">
             <h2>Pizza</h2>
@@ -72,6 +74,7 @@
             {% endfor %}
         </article>
     </section>
+    {% endif %}
 
 </main>
 

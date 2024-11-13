@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from local_settings import *
 
-
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
 
 ALLOWED_HOSTS = ['pizzaparadiso-53081858ce68.herokuapp.com',
@@ -90,23 +90,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aa_pizza.wsgi.application'
 
-SECRET_KEY = 'django-insecure-$f=hyksp4m0%u%_2ldo2a&$3)rffg@hj6blt+g0&sbnrn---q('
-
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+import dj_database_url
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "pizza_paradiso",
-        'USER': "root",
-        'PASSWORD': "kwamirzw7samadi",
-        'HOST': "127.0.0.1",
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASS,
+        'HOST': DB_HOST,
     }
 }
 
-import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
@@ -170,40 +168,27 @@ LOGOUT_REDIRECT_URL = '/home/'
 
 # AWS
 
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_FILE_OVERWRITE = os.environ.get('AWS_S3_FILE_OVERWRITE')
+AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL', None)
+DEFAULT_FILE_STORAGE = os.environ.get('DEFAULT_FILE_STORAGE')
 
-AWS_ACCESS_KEY_ID = 'AKIA6ODU3C6KE75FYRFG'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'pizzaparadiso'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-# AWS_S3_FILE_OVERWRITE = os.environ.get('AWS_S3_FILE_OVERWRITE')
-# AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL', None)
-# DEFAULT_FILE_STORAGE = os.environ.get('DEFAULT_FILE_STORAGE')
 
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
 
-
 # Stripe
 
-STRIPE_WEBHOOK_SECRET = "whsec_Ra6exjACrpu6gOksXwfoldqqMs2UJxFm"
-STRIPE_PUBLIC_KEY = \
-    "pk_test_51OMqPMCdFC8wFAX1m6WBevbH8zAjHiVySXQ0qs3dT9CQbexTba9Z9AhbFD0xrwtbKSTQvlQID9O351ITpNthfYYk00Dggoadwk"
-STRIPE_SECRET_KEY = \
-    "sk_test_51OMqPMCdFC8wFAX1urg7tnrZBg1mktkl412sRohgfl6LDUUeR1Or7eIDV9T3QER6tAnWyQlxXSpazx12H1WuBiwh000PAVi4Xk"
-DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
-
-# STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
-# STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-# STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
-# DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.getenv('DJSTRIPE_FOREIGN_KEY_TO_FIELD', 'id')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.getenv('DJSTRIPE_FOREIGN_KEY_TO_FIELD', 'id')
 
 
 # YOUR_DOMAIN = os.getenv('YOUR_DOMAIN')
 YOUR_DOMAIN = 'https://www.pizzaparadiso-kw.com'
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
