@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-from local_settings import *
 
-DEBUG = os.environ.get('DEBUG', True)
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
+
+DEBUG = os.environ.get('DEBUG')
 
 
 ALLOWED_HOSTS = ['pizzaparadiso-53081858ce68.herokuapp.com',
