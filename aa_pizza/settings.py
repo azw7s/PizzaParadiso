@@ -12,13 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
-try:
-    from local_settings import *
-except ImportError:
-    pass
-
-
-DEBUG = os.environ.get('DEBUG')
+DEBUG = os.environ.get('DEBUG', True)
 
 
 ALLOWED_HOSTS = ['pizzaparadiso-53081858ce68.herokuapp.com',
@@ -98,22 +92,17 @@ WSGI_APPLICATION = 'aa_pizza.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-import dj_database_url
-
-try:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': DB_NAME,
-            'USER': DB_USER,
-            'PASSWORD': DB_PASS,
-            'HOST': DB_HOST,
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "pizza_paradiso",
+        'USER': "root",
+        'PASSWORD': "kwamirzw7samadi",
+        'HOST': "127.0.0.1",
     }
+}
 
-except DB_NAME.DoesNotExist:
-    DATABASES = None
-
+import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
@@ -199,5 +188,4 @@ DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.getenv('DJSTRIPE_FOREIGN_KEY_TO_FIELD', 'id')
 # YOUR_DOMAIN = os.getenv('YOUR_DOMAIN')
 YOUR_DOMAIN = 'https://www.pizzaparadiso-kw.com'
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
+SECRET_KEY = 'django-insecure-$f=hyksp4m0%u%_2ldo2a&$3)rffg@hj6blt+g0&sbnrn---q('
