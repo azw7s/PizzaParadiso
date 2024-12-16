@@ -40,7 +40,6 @@
         <p class="item-detail__description"> {{ items.description }} </p>
       </div>
 
-      {% if cart_id %}
       <form method="post" action="{% url 'cart_item_create' %}">
         {% csrf_token %}
 
@@ -51,20 +50,23 @@
         <input name="quantity" type="hidden" value="1">
         {{ form }}
 
+        {% if cart_id %}
+
         <div class="add-to-cart__div">
           <button type="submit" class="secondary__btn"> Add to cart </button>
         </div>
+
+        {% else %}
+
+        <div>
+          <a href="{% url 'login' %}?next_page={{request.path}}">
+            <button type="submit" class=""> Add to cart </button>
+          </a>
+        </div>
+
+        {% endif %}
       </form>
 
-      {% else %}
-
-      <div>
-        <a href="{% url 'login' %}?next_page={{request.path}}">
-          <button type="submit" class=""> Add to cart </button>
-        </a>
-      </div>
-
-      {% endif %}
     </article>
   </section>
   {% endfor %}
